@@ -11,6 +11,7 @@ import (
 	"github.com/maorfr/cain/pkg/cain"
 	"github.com/maorfr/cain/pkg/utils"
 	"github.com/spf13/cobra"
+	"github.com/spyoff/cain/pkg/cain"
 )
 
 func main() {
