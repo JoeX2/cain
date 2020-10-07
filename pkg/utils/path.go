@@ -32,7 +32,7 @@ func GetFromAndToPathsSrcToK8s(srcClient, k8sClient interface{}, srcPrefix, srcP
 		return nil, nil, nil, err
 	}
 	if len(filesToCopyRelativePaths) == 0 {
-		return nil, nil, nil, fmt.Errorf("No files found to restore")
+		return nil, nil, nil, fmt.Errorf("No files found to restore: %v/%v", srcPrefix, srcPath)
 	}
 
 	pods := make(map[string]string)
@@ -124,9 +124,9 @@ func PathFromSrcToK8s(k8sClient interface{}, fromPath, cassandraDataDir, srcBase
 		toPath := filepath.Join(tablePath, file)
 		return toPath, nil
 	}
-
 	tableRelativePath, err := skbn.GetListOfFilesFromK8s(k8sClient, k8sKeyspacePath, "d", table+"-*")
 	if err != nil {
+		fmt.Printf("This folder does not seem to have the correct content: %s", k8sKeyspacePath)
 		return "", err
 	}
 	if len(tableRelativePath) != 1 {
