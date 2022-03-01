@@ -130,7 +130,7 @@ func PathFromSrcToK8s(k8sClient interface{}, fromPath, cassandraDataDir, srcBase
 		return "", err
 	}
 	if len(tableRelativePath) != 1 {
-		return "", fmt.Errorf("Error with table %s, found %d directories", table, len(tableRelativePath))
+		return "", fmt.Errorf("Error with table %s, found %d directories in %s", table, len(tableRelativePath), k8sKeyspacePath)
 	}
 
 	tablePath := filepath.Join(k8sKeyspacePath, tableRelativePath[0])
